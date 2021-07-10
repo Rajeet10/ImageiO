@@ -3,7 +3,7 @@ import React,{useState} from "react";
 function Image({index,image,handleRemove}) {
  const [isHovering, setIsHovering] = useState(false);
   return (
-    <div className="w-1/3 my-4 flex justify-center" >
+    <div className="p-1 m-1 border flex justify-center" >
       <div
         className="relative"
         onMouseEnter={() => setIsHovering(true)}
@@ -19,7 +19,7 @@ function Image({index,image,handleRemove}) {
             ${isHovering  ? "" : "hidden"}`}
           onClick={() => handleRemove(index)}
         ></i>
-        <img src={image} width="150" alt="" />
+        <img src={image} width="100%" height="auto" alt="" />
       </div>
     </div>
   );

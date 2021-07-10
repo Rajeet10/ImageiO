@@ -1,77 +1,44 @@
-import React,{useEffect,useState,useRef} from 'react';
-import useFetchImage from '../utils/hooks/useFetchImage';
-import Image from './Image';
+import React, { useState } from "react";
+import useFetchImage from "../utils/hooks/useFetchImage";
+import Image from "./Image";
+import Loading  from "./Loading";
 
 export default function Images() {
-    const [newimageUrl, setNewImageUrl] = useState("");
+  const [page, setPage] = useState(1);
+  const [images, setImages, errors, isLoading] = useFetchImage(page);
 
-    const [images,setImages]=useFetchImage();
+  const ShowImages = () => {
+    return images.map((img, index) => (
+      <Image
+        image={img.urls.regular}
+        handleRemove={handleRemove}
+        index={index}
+        key={index}
+      />
+    ));
+  };
 
-    const inputRef=useRef(null);
-    useEffect(()=>{
-        inputRef.current.focus(); 
-      
-    },[]);
+  const handleRemove = (index) => {
+    setImages(images.filter((images, i) => i !== index));
+  };
+  if (isLoading) {
+    return <Loading />
+  }
 
+  return (
+    <section>
+      {errors.length > 0 && (
+        <div className="flex h-screen">
+          <p className="m-auto"> {errors[0]}</p>
+        </div>
+      )}
 
-        const ShowImages=()=>{
-            return images.map((img,index)=><Image
-            image={img.urls.regular}
-            handleRemove={handleRemove}
-            index={index}
-            key={index}
-            />
-            )
-        };
-
-       const handleAdd=()=>{
-           if(newimageUrl!==""){
-            setImages([...images,
-                newimageUrl]);
-                setNewImageUrl("");
-           }
-          
-        
-        }
-
-        const handleChange=(event)=>{
-            setNewImageUrl(event.target.value);
-        }
-        const handleRemove=(index)=>{
-            setImages(images.filter((images,i)=>
-            i!==index
-        ));
-        }
-
-      
-
-
-    return (
-        <section >
-            <div className="flex flex-wrap justify-center">
-            <ShowImages/>
-            </div>
-            <div className="flex justify-between my-5">
-                <div className="w-full">
-                <input 
-                id="inputBox"
-                ref={inputRef}
-                type="text" 
-                value={newimageUrl}
-                className="p-2 border border-black-800 shadow rounded w-full"
-                onChange={handleChange}
-                />
-                </div>
-                <div>
-                <button 
-                disabled={newimageUrl===""}
-                className={`p-2 text-white ml-2 ${newimageUrl!=="" ? "bg-green-600" : "bg-green-300" }`}
-                onClick={handleAdd}
-                >Add</button>
-                </div>
-                
-            </div>
-            
-        </section>
-    )
+      <div className="gap-0" style={{ columnCount: 5 }}>
+        <ShowImages />
+      </div>
+      {errors.length === 0 && (
+        <button onClick={() => setPage(page + 1)}>Load More</button>
+      )}
+    </section>
+  );
 }
