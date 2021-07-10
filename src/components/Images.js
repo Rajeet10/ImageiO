@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useRef} from 'react';
 import Image from './Image';
 
 export default function Images() {
@@ -9,9 +9,12 @@ export default function Images() {
         'https://images.unsplash.com/photo-1622495966027-e0173192c728?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
     ]);
     const [newimageUrl, setNewImageUrl] = useState("");
-  
 
-  
+    const inputRef=useRef(null);
+    useEffect(()=>{
+        inputRef.current.focus(); 
+      
+    },[])
 
         const ShowImages=()=>{
             return images.map((img,index)=><Image
@@ -53,6 +56,8 @@ export default function Images() {
             <div className="flex justify-between my-5">
                 <div className="w-full">
                 <input 
+                id="inputBox"
+                ref={inputRef}
                 type="text" 
                 value={newimageUrl}
                 className="p-2 border border-black-800 shadow rounded w-full"
