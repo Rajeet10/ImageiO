@@ -18,11 +18,16 @@ export default function Images() {
                     className="w-1/3 my-4 flex justify-center"
                     key={index}
                     >
+                        <div className="relative">
+                        <i 
+                        className="fas fa-times absolute right-0 cursor-pointer opacity-25 hover:opacity-100" 
+                        onClick={()=>handleRemove(index)}
+                        ></i>
                         <img 
                         src={image} 
                         width="150" 
-                        onClick={()=>handleRemove(index)}
                         alt=""/>
+                        </div>
                      </div>
                 )
             })
