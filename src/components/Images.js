@@ -1,18 +1,15 @@
 import React,{useEffect,useState,useRef} from 'react';
+import useFetchImage from '../utils/hooks/useFetchImage';
 import Image from './Image';
-import Axios from 'axios';
 
 export default function Images() {
-    const [images, setImages] = useState([]);
     const [newimageUrl, setNewImageUrl] = useState("");
+
+    const [images,setImages]=useFetchImage();
 
     const inputRef=useRef(null);
     useEffect(()=>{
         inputRef.current.focus(); 
-        Axios.get(
-            `${process.env.REACT_APP_UNSPLASH_URL}?client_id=${process.env.REACT_APP_UNSPLASH_KEY}`).then((res)=>{
-                setImages(res.data);
-            })
       
     },[]);
 
