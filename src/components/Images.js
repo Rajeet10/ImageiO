@@ -12,7 +12,7 @@ export default function Images() {
         const ShowImages=()=>{
             return images.map((image)=>{
                 return(
-                    <div className="w-1/3">
+                    <div className="w-1/3 my-4 flex justify-center">
                         <img src={image} width="150"/>
                      </div>
                 )
@@ -21,9 +21,12 @@ export default function Images() {
         };
 
        const handleAdd=()=>{
-           setImages([...images,
-            newimageUrl]);
-            setNewImageUrl("");
+           if(newimageUrl!==""){
+            setImages([...images,
+                newimageUrl]);
+                setNewImageUrl("");
+           }
+          
         
         }
 
@@ -37,16 +40,22 @@ export default function Images() {
             <ShowImages/>
             </div>
             <div className="flex justify-between my-5">
+                <div className="w-full">
                 <input 
                 type="text" 
                 value={newimageUrl}
-                className="p-2 border border-black-800 shadow rounded"
+                className="p-2 border border-black-800 shadow rounded w-full"
                 onChange={handleChange}
                 />
+                </div>
+                <div>
                 <button 
-                className="p-2 bg-green-600 text-white"
+                disabled={newimageUrl===""}
+                className={`p-2 text-white ml-2 ${newimageUrl!=="" ? "bg-green-600" : "bg-green-300" }`}
                 onClick={handleAdd}
-                >Add More</button>
+                >Add</button>
+                </div>
+                
             </div>
             
         </section>
