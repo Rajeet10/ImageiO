@@ -9,11 +9,20 @@ export default function Images() {
     ]);
     const [newimageUrl, setNewImageUrl] = useState("");
 
+  
+
         const ShowImages=()=>{
-            return images.map((image)=>{
+            return images.map((image,index)=>{
                 return(
-                    <div className="w-1/3 my-4 flex justify-center">
-                        <img src={image} width="150"/>
+                    <div 
+                    className="w-1/3 my-4 flex justify-center"
+                    key={index}
+                    >
+                        <img 
+                        src={image} 
+                        width="150" 
+                        onClick={()=>handleRemove(index)}
+                        alt=""/>
                      </div>
                 )
             })
@@ -32,6 +41,11 @@ export default function Images() {
 
         const handleChange=(event)=>{
             setNewImageUrl(event.target.value);
+        }
+        const handleRemove=(index)=>{
+            setImages(images.filter((images,i)=>
+            i!==index
+        ));
         }
 
     return (
