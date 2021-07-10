@@ -1,4 +1,5 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState} from 'react';
+import Image from './Image';
 
 export default function Images() {
     const [images, setImages] = useState([
@@ -8,30 +9,18 @@ export default function Images() {
         'https://images.unsplash.com/photo-1622495966027-e0173192c728?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
     ]);
     const [newimageUrl, setNewImageUrl] = useState("");
+  
 
   
 
         const ShowImages=()=>{
-            return images.map((image,index)=>{
-                return(
-                    <div 
-                    className="w-1/3 my-4 flex justify-center"
-                    key={index}
-                    >
-                        <div className="relative">
-                        <i 
-                        className="fas fa-times absolute right-0 cursor-pointer opacity-25 hover:opacity-100" 
-                        onClick={()=>handleRemove(index)}
-                        ></i>
-                        <img 
-                        src={image} 
-                        width="150" 
-                        alt=""/>
-                        </div>
-                     </div>
-                )
-            })
-
+            return images.map((img,index)=><Image
+            image={img}
+            handleRemove={handleRemove}
+            index={index}
+            key={index}
+            />
+            )
         };
 
        const handleAdd=()=>{
@@ -52,6 +41,9 @@ export default function Images() {
             i!==index
         ));
         }
+
+      
+
 
     return (
         <section >
