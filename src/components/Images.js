@@ -1,24 +1,25 @@
 import React,{useEffect,useState,useRef} from 'react';
 import Image from './Image';
+import Axios from 'axios';
 
 export default function Images() {
-    const [images, setImages] = useState([
-        "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1622495894307-93143fc57155?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=734&q=80",
-        "https://images.unsplash.com/photo-1623944887316-a475472013c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=751&q=80",
-        'https://images.unsplash.com/photo-1622495966027-e0173192c728?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
-    ]);
+    const [images, setImages] = useState([]);
     const [newimageUrl, setNewImageUrl] = useState("");
 
     const inputRef=useRef(null);
     useEffect(()=>{
         inputRef.current.focus(); 
+        Axios.get(
+            `${process.env.REACT_APP_UNSPLASH_URL}?client_id=${process.env.REACT_APP_UNSPLASH_KEY}`).then((res)=>{
+                setImages(res.data);
+            })
       
-    },[])
+    },[]);
+
 
         const ShowImages=()=>{
             return images.map((img,index)=><Image
-            image={img}
+            image={img.urls.regular}
             handleRemove={handleRemove}
             index={index}
             key={index}
