@@ -1,21 +1,28 @@
-import React,{useState} from 'react';
+import React from 'react';
 import './App.css';
-import Images from './components/Images';
+import {BrowserRouter,Route, Switch,Link} from 'react-router-dom';
+import routes from './utils/routes/routes';
+import Header from './components/Header';
 
 
 
 function App(){
-  const [title, setTitle] = useState("Welcome");
 
       return(
-      <section className="flex justify-center">
-        <div className="w-10/12">
-          <div className="text-center">
-        <div className="my-4">{title}</div>
-        <Images/>
-        </div>
-        </div>
-      </section>
+        <BrowserRouter>
+       <Header/>
+        <Switch>
+  {
+    routes.map((route)=>(
+      <Route 
+      path={route.path}
+      exact={route.exact} 
+      component={route.component}
+      />
+    ))
+  }
+        </Switch>     
+        </BrowserRouter>
       
     )
 
