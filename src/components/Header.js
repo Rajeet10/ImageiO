@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div className="py-5 bg-gray-500 text-white">
+        <div className="py-5 bg-gray-900 text-white">
              <nav>
           <ul className="flex justify-between px-10">
               <span className="flex"> 
