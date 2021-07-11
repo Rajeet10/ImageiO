@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import useFetchImage from "../utils/hooks/useFetchImage";
 import Image from "./Image";
 import Loading  from "./Loading";
+import  useDebounce  from "../utils/hooks/useDebounce";
 
 export default function Images() {
   const [page, setPage] = useState(1);
@@ -33,8 +34,11 @@ export default function Images() {
     setImages(images.filter((images, i) => i !== index));
   };
 
+  const debounce=useDebounce();
   const handleInput=(e)=>{
-    setSearchTerm(e.target.value);
+    const text=e.target.value;
+    debounce(()=>setSearchTerm(text))
+
   }
 
 

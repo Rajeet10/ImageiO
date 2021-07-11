@@ -11,36 +11,34 @@ export default function useFetchImage(page, searchTerm) {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  function fetch() {
+    const url =
+      searchTerm === null ? "photos?" : `search/photos?query=${searchTerm}&`;
+    Axios.get(`${api}/${url}client_id=${secret}&page=${page}`)
+      .then((res) => {
+        searchTerm === null ? fetchRandom(res) : fetchSearch(res);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        seterrors(["Unable to fetch images ,Please reload the page again!"]);
+        setIsLoading(false);
+      });
+  }
+
+  const fetchSearch = (res) => {
+    page > 1
+      ? setImages([...images, ...res.data.results])
+      : setImages([...res.data.results]);
+  };
+
+  const fetchRandom = (res) => {
+    setImages([...images, ...res.data]);
+  };
+
   useEffect(() => {
     setIsLoading(true);
-    Axios.get(`${api}/photos?client_id=${secret}&page=${page}`)
-      .then((res) => {
-        setImages([...res.data]);
-
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        seterrors(["Unable to fetch images ,Please reload the page again!"]);
-        setIsLoading(false);
-      });
-    // eslint-disable-next-line
-  }, [page]);
-
-  useEffect(() => {
-      if(searchTerm===null) return ;
-    Axios.get(
-      `${api}/search/photos?client_id=${secret}&page=${page}&query=${searchTerm}`
-    )
-      .then((res) => {
-        setImages([...res.data.results]);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        seterrors(["Unable to fetch images ,Please reload the page again!"]);
-        setIsLoading(false);
-      });
-    // eslint-disable-next-line
-  }, [searchTerm]);
+    fetch();
+  }, [page,searchTerm]);
 
   return [images, setImages, errors, isLoading];
 }
