@@ -1,7 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect,useState } from 'react';
+import { Link,useHistory } from 'react-router-dom';
+import firebase from '../config/Firebase';
 
 const Header = () => {
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const history=useHistory();
+useEffect(() => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if(user){
+      setIsLoggedin(true);
+    }
+// console.log(user);
+  })
+  }, []);
+
+  const logout=()=>{
+    firebase
+    .auth()
+    .signOut()
+    .then((res) => {
+      history.replace("/login");
+
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
     return (
         <div className="py-5 bg-gray-900 text-white">
              <nav>
@@ -15,7 +38,14 @@ const Header = () => {
             </li>
             </span>
             <li>
-            <Link to="/login">Login</Link>
+              {isLoggedin ? 
+              (
+                <button onClick={logout}>Logout</button>
+              ) :
+              (
+                <Link to="/login">Login</Link>
+              )
+              }
             </li>
           </ul>
         </nav>
@@ -23,4 +53,5 @@ const Header = () => {
     )
 }
 
-export default Header;
+
+export default Header
