@@ -1,13 +1,20 @@
 import React,{useState} from 'react';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import firebase from '../config/Firebase';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
+    const history=useHistory();
     return (
         <Formik 
         initialValues={{email:"",password:""}}
-        onSubmit={(value)=>{
-            console.log("Formik",value)
+        onSubmit={(value,formikBag)=>{
+            firebase.auth().createUserWithEmailAndPassword(value.email,value.password).then(res=>{
+                history.replace("/");
+            }).catch(e=>{
+               formikBag.setFieldError('email',e.message);
+            })
         }}
       validationSchema={Yup.object({
           email:Yup.string().required('Email is Required').email('Email is invalid'),
