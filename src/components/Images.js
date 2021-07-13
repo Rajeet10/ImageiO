@@ -4,14 +4,18 @@ import useFetchImage from "../utils/hooks/useFetchImage";
 import Image from "./Image";
 import Loading  from "./Loading";
 import  useDebounce  from "../utils/hooks/useDebounce";
+import { AnimateSharedLayout,AnimatePresence,motion} from "framer-motion";
 
 export default function Images() {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState(null);
   const [images, setImages, errors, isLoading] = useFetchImage(page,searchTerm);
+  
 
   const ShowImages = () => {
+    const [showPreview, setShowPreview] = useState(false);
     return (
+      <AnimateSharedLayout>
     <InfiniteScroll
     dataLength={images.length}
     next={()=>setPage(page+1)}
@@ -20,6 +24,7 @@ export default function Images() {
     >
     { images.map((img, index) => (
       <Image
+      show={()=>setShowPreview(img.urls.regular)}
         image={img.urls.regular}
         handleRemove={handleRemove}
         index={index}
@@ -27,6 +32,24 @@ export default function Images() {
       />
     ))}
     </InfiniteScroll>
+    <AnimatePresence>
+      {showPreview &&
+      (<motion.section 
+        exit={{opacity:0}}
+      className="fixed flex w-full h-full justify-center items-center top-0 left-0 z-40"
+       onClick={()=>setShowPreview(false)}>
+         <div className="bg-white">
+         <img 
+        src={showPreview} 
+        className="rounded-lg"
+        width="300" 
+        height="auto" 
+        alt="" />
+         </div>
+    </motion.section>)
+      }
+      </AnimatePresence>
+    </AnimateSharedLayout>
     )
   };
 

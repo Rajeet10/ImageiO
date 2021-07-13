@@ -1,9 +1,11 @@
 import React,{useState} from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
-function Image({index,image,handleRemove}) {
+function Image({index,image,handleRemove,show}) {
  const [isHovering, setIsHovering] = useState(false);
+
   return (
-    <div className="w-1/3 p-1 border flex justify-center" >
+    <div className="w-1/6 p-1 border flex justify-center" >
       <div
         className="relative"
         onMouseEnter={() => setIsHovering(true)}
@@ -19,8 +21,15 @@ function Image({index,image,handleRemove}) {
             ${isHovering  ? "" : "hidden"}`}
           onClick={() => handleRemove(index)}
         ></i>
-        <img src={image} width="100%" height="auto" alt="" />
+        <img 
+        onClick={show}
+        src={image} 
+        width="100%" 
+        height="auto" 
+        alt="" />
       </div>
+     
+      
     </div>
   );
 }
