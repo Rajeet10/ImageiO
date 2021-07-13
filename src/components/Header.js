@@ -23,12 +23,16 @@ const Header = () => {
              <nav className="py-5 bg-gray-900 text-white flex justify-between">
           <ul className="flex justify-between px-10">
             <li className="mr-5">
-              <NavLink to="/"  exact activeClassName="underline text-yellow-200">
+              <NavLink to="/"  exact activeClassName="underline text-yellow-200"
+              style={{textDecoration:'none'}}
+              >
                 Home
                 </NavLink>
             </li>
             <li className="mr-5">
-            <NavLink to="/gallery" activeClassName="underline text-yellow-200">
+            <NavLink to="/gallery" activeClassName="underline text-yellow-200"
+            style={{textDecoration:'none'}}
+            >
               Gallery
               </NavLink>
             </li>
@@ -40,7 +44,9 @@ const Header = () => {
                 <button onClick={logout}>Logout</button>
               ) :
               (
-                <NavLink to="/login" activeClassName="underline text-yellow-200">
+                <NavLink to="/login" activeClassName="underline text-yellow-200"
+                style={{textDecoration:'none'}}
+                >
                   Login
                   </NavLink>
               )
