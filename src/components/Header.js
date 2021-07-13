@@ -20,10 +20,8 @@ const Header = () => {
     });
   }
     return (
-        <div className="py-5 bg-gray-900 text-white">
-             <nav>
+             <nav className="py-5 bg-gray-900 text-white flex justify-between">
           <ul className="flex justify-between px-10">
-              <span className="flex"> 
             <li className="mr-5">
               <NavLink to="/"  exact activeClassName="underline text-yellow-200">
                 Home
@@ -34,7 +32,8 @@ const Header = () => {
               Gallery
               </NavLink>
             </li>
-            </span>
+            </ul>
+            <ul className="flex justify-between px-10">
             <li>
               {isLoggedIn ? 
               (
@@ -47,9 +46,17 @@ const Header = () => {
               )
               }
             </li>
+            <li className="ml-5">
+              {!isLoggedIn &&
+              (
+                <NavLink to="/signup" activeClassName="underline text-yellow-200">
+                  Signup
+                  </NavLink>
+              )
+              }
+            </li>
           </ul>
         </nav>
-        </div>
     )
 }
 
