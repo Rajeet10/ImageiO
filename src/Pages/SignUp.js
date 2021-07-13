@@ -26,10 +26,7 @@ const SignUp = () => {
                   <input type="email" 
                   className="p-2 rounded shadow w-full text-black"
                   placeholder="Email Id"
-                  name="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
+                  {...formik.getFieldProps("email")}
                   />
                   {
                       formik.touched.email && formik.errors.email ?
@@ -41,10 +38,7 @@ const SignUp = () => {
                   <input type="password" 
                    className="p-2 rounded shadow w-full text-black"
                    placeholder="Password"
-                   name="password"
-                   value={formik.values.password}
-                   onChange={formik.handleChange}
-                   onBlur={formik.handleBlur}
+                  {...formik.getFieldProps("password")}
                    />
                    {
                       formik.touched.password && formik.errors.password ?
