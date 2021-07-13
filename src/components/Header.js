@@ -10,7 +10,6 @@ useEffect(() => {
     if(user){
       setIsLoggedin(true);
     }
-// console.log(user);
   })
   }, []);
 
@@ -19,6 +18,7 @@ useEffect(() => {
     .auth()
     .signOut()
     .then((res) => {
+      setIsLoggedin(false);
       history.replace("/login");
 
     }).catch((error) => {
