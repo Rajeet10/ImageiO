@@ -15,7 +15,7 @@ export default function Images() {
   const ShowImages = () => {
     const [showPreview, setShowPreview] = useState(false);
     return (
-      <AnimateSharedLayout>
+      <AnimateSharedLayout >
     <InfiniteScroll
     dataLength={images.length}
     next={()=>setPage(page+1)}
@@ -23,18 +23,26 @@ export default function Images() {
     className="flex flex-wrap"
     >
     { images.map((img, index) => (
+      <motion.div 
+      className="w-1/6 p-1 border flex justify-center"
+      key={index}
+      layoutId={img.urls.regular}
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      >
       <Image
       show={()=>setShowPreview(img.urls.regular)}
         image={img.urls.regular}
         handleRemove={handleRemove}
         index={index}
-        key={index}
       />
+      </motion.div >
     ))}
     </InfiniteScroll>
     <AnimatePresence>
       {showPreview &&
       (<motion.section 
+        layoutId={showPreview}
         exit={{opacity:0}}
       className="fixed flex w-full h-full justify-center items-center top-0 left-0 z-40"
        onClick={()=>setShowPreview(false)}>
