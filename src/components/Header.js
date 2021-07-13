@@ -3,22 +3,15 @@ import { Link,useHistory } from 'react-router-dom';
 import firebase from '../config/Firebase';
 
 const Header = () => {
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history=useHistory();
-useEffect(() => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if(user){
-      setIsLoggedin(true);
-    }
-  })
-  }, []);
 
   const logout=()=>{
     firebase
     .auth()
     .signOut()
     .then((res) => {
-      setIsLoggedin(false);
+      setIsLoggedIn(false);
       history.replace("/login");
 
     }).catch((error) => {
@@ -38,7 +31,7 @@ useEffect(() => {
             </li>
             </span>
             <li>
-              {isLoggedin ? 
+              {isLoggedIn ? 
               (
                 <button onClick={logout}>Logout</button>
               ) :
