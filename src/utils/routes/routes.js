@@ -7,14 +7,18 @@ export default [
     {
         path: "/",
         exact: true,
-        component:()=><Home/>
+        component:()=><Home/>,
+        protected:null,
     },
     {
         path:"/gallery",
-        component:()=><Gallery/>
+        component:()=><Gallery/>,
+        protected:"auth",
     },
     {
         path:"/login",
-        component:()=><Login/>
+        component:()=><Login/>,
+        protected:"guest",
+
     },
 ];
