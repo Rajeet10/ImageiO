@@ -1,9 +1,10 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState,useContext } from 'react';
 import { Link,useHistory } from 'react-router-dom';
 import firebase from '../config/Firebase';
+import AppContext from '../store/AppContext';
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn,user]=useContext(AppContext);
   const history=useHistory();
 
   const logout=()=>{
@@ -11,7 +12,7 @@ const Header = () => {
     .auth()
     .signOut()
     .then((res) => {
-      setIsLoggedIn(false);
+
       history.replace("/login");
 
     }).catch((error) => {
