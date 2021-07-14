@@ -23,18 +23,23 @@ const Header = () => {
              <nav className="py-5 bg-gray-900 text-white flex justify-between">
           <ul className="flex justify-between px-10">
             <li className="mr-5">
-              <NavLink to="/"  exact activeClassName="underline text-yellow-200"
-              style={{textDecoration:'none'}}
+              <NavLink to="/"  exact activeClassName="text-yellow-200"
               >
                 Home
                 </NavLink>
             </li>
             <li className="mr-5">
-            <NavLink to="/gallery" activeClassName="underline text-yellow-200"
-            style={{textDecoration:'none'}}
+            <NavLink to="/gallery" activeClassName="text-yellow-200"
             >
               Gallery
               </NavLink>
+            </li>
+            <li className="mr-5">
+              <NavLink to="/tensorflow" 
+              exact activeClassName="text-yellow-200"
+              >
+               TensorFlow
+                </NavLink>
             </li>
             </ul>
             <ul className="flex justify-between px-10">
@@ -44,8 +49,7 @@ const Header = () => {
                 <button onClick={logout}>Logout</button>
               ) :
               (
-                <NavLink to="/login" activeClassName="underline text-yellow-200"
-                style={{textDecoration:'none'}}
+                <NavLink to="/login" activeClassName="text-yellow-200"
                 >
                   Login
                   </NavLink>
@@ -55,7 +59,7 @@ const Header = () => {
             <li className="ml-5">
               {!isLoggedIn &&
               (
-                <NavLink to="/signup" activeClassName="underline text-yellow-200">
+                <NavLink to="/signup" activeClassName="text-yellow-200">
                   Signup
                   </NavLink>
               )
