@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 
 const api = process.env.REACT_APP_UNSPLASH_API;
