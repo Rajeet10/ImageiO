@@ -1,9 +1,13 @@
-import React,{useState} from "react";
-import PropTypes from 'prop-types'
+import React,{useState,useRef} from "react";
+import PropTypes from 'prop-types';
+import { useTfPrediction } from "../utils/hooks/useTfPrediction";
+
 
 
 function Image({index,image,handleRemove,show}) {
  const [isHovering, setIsHovering] = useState(false);
+ const imageRef=useRef();
+ const {predict,setPredictions,predictions,isLoading}=useTfPrediction();
 
   return (
       <div
@@ -11,6 +15,21 @@ function Image({index,image,handleRemove,show}) {
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
+        {
+        (predictions.length > 0 || isLoading) && (
+        <span className="absolute bg-gray-800 text-white rounded-lg shadow px-2 left-0 ml-5" onClick={()=>setPredictions([])}>
+          {isLoading && <p>Fetching results...</p>}
+           {predictions.map(prediction=>(
+               <div className="flex justify-between">
+                           <p>{prediction.className}</p>
+                           <p>{Math.floor(prediction.probability * 100)}%</p>
+               </div>
+               ))}
+          
+          </span>
+        )
+        }
+       
         <i
           className={`fas fa-times 
             absolute 
@@ -29,14 +48,17 @@ function Image({index,image,handleRemove,show}) {
             opacity-25 
             hover:opacity-100 
             ${isHovering  ? "" : "hidden"}`}
-          onClick={() => handleRemove(index)}
+          onClick={() => predict(imageRef.current)}
         ></i>
         <img 
+        ref={imageRef}
         onClick={show}
         src={image} 
         width="100%" 
         height="auto" 
-        alt="" />
+        alt=""
+        crossOrigin="anonymous"
+        />
       </div>
   );
 }
