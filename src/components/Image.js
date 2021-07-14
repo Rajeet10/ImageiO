@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import PropTypes from 'prop-types'
 
 
 function Image({index,image,handleRemove,show}) {
@@ -30,14 +31,10 @@ function Image({index,image,handleRemove,show}) {
   );
 }
 Image.propTypes={
-  show:(props,propName)=>{
-    if(typeof(props[propName])===Error)
-    return new Error(`${propName} must be a function but you have provided ${typeof props[propName]}`);
-  },
-  index:(props,propName)=>{
-    if(typeof(props[propName])===Error)
-    return new Error(`${propName} must be a number but you have provided ${typeof props[propName]}`);
-  },
+show:PropTypes.func,
+index:PropTypes.number,
+image:PropTypes.string,
+handleRemove:PropTypes.func
 }
 
 export default Image;
