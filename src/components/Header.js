@@ -56,13 +56,13 @@ const Header = () => {
             </NavLink>
           )}
         </li>
-        <li className="ml-5">
           {!isLoggedIn && (
+            <li className="ml-5">
             <NavLink to="/signup" activeClassName="text-yellow-200">
               Signup
             </NavLink>
+            </li>
           )}
-        </li>
       </ul>
     </nav>
   );
