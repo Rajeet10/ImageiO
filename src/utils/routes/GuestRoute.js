@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
-import { Redirect, Route } from 'react-router-dom';
-import Loading from '../../components/Loading';
+import { Redirect} from 'react-router-dom';
 import AppContext from '../../store/AppContext';
-import { motion } from 'framer-motion';
 import AnimatedRoute from './AnimatedRoute';
 
 const GuestRoute = ({ children, ...rest }) => {

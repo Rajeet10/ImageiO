@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect,  } from "react";
 import "./App.css";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import {Redirect, Route, Switch, useLocation } from "react-router-dom";
 import routes from "./utils/routes/routes";
 import Header from "./components/Header";
 import firebase from "./config/Firebase";
@@ -9,7 +9,7 @@ import AuthRoute from "./utils/routes/AuthRoute";
 import GuestRoute from "./utils/routes/GuestRoute";
 import Loading from "./components/Loading";
 import NotFound from "./Pages/NotFound";
-import { motion } from "framer-motion";
+import { AnimatePresence,} from "framer-motion";
 import AnimatedRoute from "./utils/routes/AnimatedRoute";
 
 function App() {
@@ -31,13 +31,15 @@ function App() {
       }
     });
   }, []);
+  const location= useLocation();
   if(isLoading) return <Loading />
 
+
   return (
-    <BrowserRouter>
       <AppContext.Provider value={[isLoggedIn, user]}>
         <Header />
-        <Switch>
+        <AnimatePresence>
+        <Switch key={location.pathname} location={location}>
           {routes.map((route, index) => {
             if(route.path==='/login'){
               if(isLoggedIn){
@@ -84,8 +86,8 @@ function App() {
               <NotFound/>
             </Route>
         </Switch>
+        </AnimatePresence>
       </AppContext.Provider>
-    </BrowserRouter>
   );
 }
 export default App;

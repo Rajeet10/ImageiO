@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { AnimatePresence, motion } from "framer-motion";
+
 
 function Image({index,image,handleRemove,show}) {
  const [isHovering, setIsHovering] = useState(false);
@@ -28,6 +28,16 @@ function Image({index,image,handleRemove,show}) {
         alt="" />
       </div>
   );
+}
+Image.propTypes={
+  show:(props,propName)=>{
+    if(typeof(props[propName])===Error)
+    return new Error(`${propName} must be a function but you have provided ${typeof props[propName]}`);
+  },
+  index:(props,propName)=>{
+    if(typeof(props[propName])===Error)
+    return new Error(`${propName} must be a number but you have provided ${typeof props[propName]}`);
+  },
 }
 
 export default Image;
