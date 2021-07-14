@@ -9,6 +9,8 @@ import AuthRoute from "./utils/routes/AuthRoute";
 import GuestRoute from "./utils/routes/GuestRoute";
 import Loading from "./components/Loading";
 import NotFound from "./Pages/NotFound";
+import { motion } from "framer-motion";
+import AnimatedRoute from "./utils/routes/AnimatedRoute";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,8 +50,11 @@ function App() {
               key={index}
               path={route.path}
               exact={route.exact}
-              component={route.component}
-            />)
+            >
+              <route.component/>
+            </AuthRoute>
+            
+            )
             }
             if(route.protected==="guest"){
               return (     
@@ -57,16 +62,20 @@ function App() {
               key={index}
               path={route.path}
               exact={route.exact}
-              component={route.component}
-            />)
+            >
+              <route.component/>
+            </GuestRoute>
+              )
             }
             return (
-              <Route
+              <AnimatedRoute
                 key={index}
                 path={route.path}
                 exact={route.exact}
                 component={route.component}
-              />
+              >
+                <route.component/>
+              </AnimatedRoute>
             );
           })}
            <Route
