@@ -36,7 +36,8 @@ const Header = () => {
             </li>
             <li className="mr-5">
               <NavLink to="/tensorflow" 
-              exact activeClassName="text-yellow-200"
+              exact
+               activeClassName="text-yellow-200"
               >
                TensorFlow
                 </NavLink>

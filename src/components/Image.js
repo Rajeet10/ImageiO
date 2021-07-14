@@ -21,6 +21,16 @@ function Image({index,image,handleRemove,show}) {
             ${isHovering  ? "" : "hidden"}`}
           onClick={() => handleRemove(index)}
         ></i>
+         <i
+          className={`fas fa-search 
+            absolute 
+            left-0 
+            cursor-pointer 
+            opacity-25 
+            hover:opacity-100 
+            ${isHovering  ? "" : "hidden"}`}
+          onClick={() => handleRemove(index)}
+        ></i>
         <img 
         onClick={show}
         src={image} 
