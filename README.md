@@ -1,70 +1,117 @@
-npx tailwind # Getting Started with Create React App
+# 🌟 ImageIO – Image Search & AI Prediction App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![React](https://img.shields.io/badge/React-18+-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-4.x+-ff6f00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/js)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.x+-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Unsplash API](https://img.shields.io/badge/API-Unsplash-success)](https://unsplash.com/developers)
 
-## Available Scripts
+**A React web app that lets you search high-quality images using the Unsplash API and run AI predictions on them with TensorFlow.js.**
 
-In the project directory, you can run:
+ImageiO combines real-time image discovery with browser-based machine learning inference — perfect for exploring visuals and applying AI analysis locally.
 
-### `npm start`
+**Note**: This app is designed to run locally[](http://localhost:3000). No live hosted demo is available yet.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ✨ Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Real-time image search** powered by Unsplash API (fetch royalty-free photos instantly)
+- Infinite scrolling grid for seamless browsing of search results
+- Click any image → run **TensorFlow.js** prediction (image classification / analysis)
+- Secure routing: TensorFlow prediction page accessible only after login
+- Modern, responsive UI styled with **Tailwind CSS** (mobile, tablet, desktop support)
+- Clean loading states, error handling, and user-friendly feedback
+- Environment variables for API keys (`.env` file)
+- Built with Create React App for easy setup and development
 
-### `npm test`
+## 🛠️ Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend Framework**: React.js (18+)
+- **Language**: JavaScript (ES6+)
+- **Styling**: Tailwind CSS
+- **AI/ML Inference**: TensorFlow.js (runs in the browser)
+- **API**: Unsplash API (for image search)
+- **Build Tool**: Create React App
+- **Deployment**: Local only (npm start) — easy to deploy on Netlify/Vercel later
+- **License**: Apache 2.0
 
-### `npm run build`
+## 🚀 How to Run Locally
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Rajeet10/ImageiO.git
+   cd ImageiO
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies
+    ```
+        npm install
 
-### `npm run eject`
+        # or if you use yarn:
+            
+        # yarn install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Set up your Unsplash API key
+    ```
+    1. Go to https://unsplash.com/developers 
+    2. create an app 
+    3. get your Access Key
+    4. Create a .env file in the root directory:text
+    5. REACT_APP_UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
+    ````
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Start the development server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ```Bash 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+        npm start
 
-## Learn More
+        # or
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+        yarn start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```
+5. The app will open automatically at http://localhost:3000 (or visit it manually)
 
-### Code Splitting
+6. Search for images, browse results, log in (if required) to access the TensorFlow prediction feature
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+7. Build for production (optional)Bashnpm run buildThis creates an optimized build/ folder.
 
-### Analyzing the Bundle Size
+8. Search Results GridTensorFlow Prediction ViewMobile Responsive LayoutSearch ResultsPredictionMobile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Contributions are welcome!
+Ideas for improvement:
 
-### Advanced Configuration
+1. Add more TensorFlow.js models (e.g., MobileNet, Coco-SSD, custom-trained)
+2. Implement dark mode toggle
+3. Add image download / save to favorites
+4. Improve login system (e.g., Firebase Auth or local storage)
+5. Deploy a live demo (Netlify / Vercel)
+6. Add more detailed prediction output (confidence scores, labels explanation)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    ```
+        Standard workflow:
 
-### Deployment
+        1. Fork the repo
+        2. Create your feature branch (git checkout -b feature/amazing-feature)
+        3. Commit your changes (git commit -m 'Add amazing feature')
+        4. Push to the branch (git push origin feature/amazing-feature)
+        5. Open a Pull Request
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📜 License
 
-### `npm run build` fails to minify
+[Apache License 2.0](https://www.apache.org/licenses/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/). You are free to use, modify, and distribute it (even commercially), as long as the original copyright and disclaimer are included.
+
+
+## 💬 Contact & Support
+
+Feedback, questions, or collaboration opportunities are welcome.
+
+⭐ If you find this repository useful, please consider giving it a star!
