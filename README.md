@@ -41,8 +41,6 @@ ImageiO combines real-time image discovery with browser-based machine learning i
    ```bash
    git clone https://github.com/Rajeet10/ImageiO.git
    cd ImageiO
-
-
 2. Install dependencies
     ```
         npm install
@@ -64,13 +62,9 @@ ImageiO combines real-time image discovery with browser-based machine learning i
 4. Start the development server
 
     ```Bash 
-
         npm start
-
         # or
-
         yarn start
-
     ```
 5. The app will open automatically at http://localhost:3000 (or visit it manually)
 
